@@ -1,0 +1,1 @@
+# Android demo that demonstrate how to build Android app using Clean Architecture
