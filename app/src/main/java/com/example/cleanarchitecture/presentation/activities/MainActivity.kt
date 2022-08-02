@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture.presentation
+package com.example.cleanarchitecture.presentation.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,7 +11,7 @@ import com.example.cleanarchitecture.domain.usecases.SaveNoteUseCase
 
 class MainActivity : AppCompatActivity() {
 
-    private val noteRepository = NoteRepositoryImpl()
+    private val noteRepository = NoteRepositoryImpl(this@MainActivity)
     private val getNoteUseCase = GetNoteUseCase(noteRepository)
     private val saveNoteUseCase = SaveNoteUseCase(noteRepository)
 
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun btnGetNoteOnClick() {
-        val data = getNoteUseCase.execute()
+        val data = getNoteUseCase.execute() // dummy id
         renderNote(data)
     }
 
