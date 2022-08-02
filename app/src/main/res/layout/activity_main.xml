@@ -9,7 +9,6 @@
         android:id="@+id/tv_note"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/tv_note_placeholder_text"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

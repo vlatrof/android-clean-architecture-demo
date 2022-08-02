@@ -3,6 +3,7 @@ package com.example.cleanarchitecture.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.cleanarchitecture.R
+import com.example.cleanarchitecture.data.repository.NoteRepositoryImpl
 import com.example.cleanarchitecture.databinding.ActivityMainBinding
 import com.example.cleanarchitecture.domain.models.Note
 import com.example.cleanarchitecture.domain.usecases.GetNoteUseCase
@@ -10,8 +11,9 @@ import com.example.cleanarchitecture.domain.usecases.SaveNoteUseCase
 
 class MainActivity : AppCompatActivity() {
 
-    private val getNoteUseCase = GetNoteUseCase()
-    private val saveNoteUseCase = SaveNoteUseCase()
+    private val noteRepository = NoteRepositoryImpl()
+    private val getNoteUseCase = GetNoteUseCase(noteRepository)
+    private val saveNoteUseCase = SaveNoteUseCase(noteRepository)
 
     private lateinit var binding: ActivityMainBinding
 
@@ -32,17 +34,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun btnSaveNoteOnClick() {
         val data = Note(binding.etInputNote.text.toString())
-        saveNoteUseCase.execute(data)
+        val saveResult = saveNoteUseCase.execute(data)
+        renderString("Note saved: ${saveResult.toString()}")
     }
 
     private fun renderNote(note: Note) {
 
-        if (note.value == "") {
+        if (note.text == "") {
             binding.tvNote.text = getString(R.string.tv_note_placeholder_text)
             return
         }
 
-        binding.tvNote.text = note.value
+        renderString(note.text)
+    }
+
+    private fun renderString(str: String) {
+        binding.tvNote.text = str
     }
 
 }
