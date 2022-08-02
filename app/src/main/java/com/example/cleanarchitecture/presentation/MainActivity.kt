@@ -4,15 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.cleanarchitecture.R
 import com.example.cleanarchitecture.databinding.ActivityMainBinding
-import com.example.cleanarchitecture.domain.App
-import com.example.cleanarchitecture.domain.models.Data
-import com.example.cleanarchitecture.domain.usecases.GetDataUseCase
-import com.example.cleanarchitecture.domain.usecases.SaveDataUseCase
+import com.example.cleanarchitecture.domain.models.Note
+import com.example.cleanarchitecture.domain.usecases.GetNoteUseCase
+import com.example.cleanarchitecture.domain.usecases.SaveNoteUseCase
 
 class MainActivity : AppCompatActivity() {
 
-    private val getDataUseCase = GetDataUseCase()
-    private val saveDataUseCase = SaveDataUseCase()
+    private val getNoteUseCase = GetNoteUseCase()
+    private val saveNoteUseCase = SaveNoteUseCase()
 
     private lateinit var binding: ActivityMainBinding
 
@@ -21,29 +20,29 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.btnGetData.setOnClickListener { btnGetDataOnClick() }
-        binding.btnSaveData.setOnClickListener { btnSaveDataOnClick() }
+        binding.btnGetNote.setOnClickListener { btnGetNoteOnClick() }
+        binding.btnSaveNote.setOnClickListener { btnSaveNoteOnClick() }
 
     }
 
-    private fun btnGetDataOnClick() {
-        val data = getDataUseCase.execute()
-        renderData(data)
+    private fun btnGetNoteOnClick() {
+        val data = getNoteUseCase.execute()
+        renderNote(data)
     }
 
-    private fun btnSaveDataOnClick() {
-        val data = Data(binding.etInputData.text.toString())
-        saveDataUseCase.execute(data)
+    private fun btnSaveNoteOnClick() {
+        val data = Note(binding.etInputNote.text.toString())
+        saveNoteUseCase.execute(data)
     }
 
-    private fun renderData(data: Data) {
+    private fun renderNote(note: Note) {
 
-        if (data.value == "") {
-            binding.tvData.text = getString(R.string.tv_data_placeholder_text)
+        if (note.value == "") {
+            binding.tvNote.text = getString(R.string.tv_note_placeholder_text)
             return
         }
 
-        binding.tvData.text = data.value
+        binding.tvNote.text = note.value
     }
 
 }

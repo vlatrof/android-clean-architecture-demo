@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CleanArchitecture</string>
-    <string name="tv_data_placeholder_text">No data</string>
-    <string name="btn_get_data_text">Get data</string>
-    <string name="et_input_data_hint">Input new data here</string>
-    <string name="btn_save_data_text">Save data</string>
+    <string name="tv_note_placeholder_text">No note</string>
+    <string name="btn_get_note_text">Get note</string>
+    <string name="et_input_note_hint">Input new note here</string>
+    <string name="btn_save_note_text">Save note</string>
 </resources>

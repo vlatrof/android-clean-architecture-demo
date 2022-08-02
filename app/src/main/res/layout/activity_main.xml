@@ -6,10 +6,10 @@
     android:padding="30dp">
 
     <TextView
-        android:id="@+id/tv_data"
+        android:id="@+id/tv_note"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/tv_data_placeholder_text"
+        android:text="@string/tv_note_placeholder_text"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,35 +17,35 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_get_data"
+        android:id="@+id/btn_get_note"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/btn_get_data_text"
+        android:text="@string/btn_get_note_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_data" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_note" />
 
     <EditText
-        android:id="@+id/et_input_data"
+        android:id="@+id/et_input_note"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="@string/et_input_data_hint"
+        android:hint="@string/et_input_note_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_get_data" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_get_note" />
 
     <Button
-        android:id="@+id/btn_save_data"
+        android:id="@+id/btn_save_note"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/btn_save_data_text"
+        android:text="@string/btn_save_note_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_input_data" />
+        app:layout_constraintTop_toBottomOf="@+id/et_input_note" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

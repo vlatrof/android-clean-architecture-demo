@@ -1,5 +1,5 @@
 package com.example.cleanarchitecture.domain.models
 
-data class Data(
+data class Note(
     val value: String = ""
 )
