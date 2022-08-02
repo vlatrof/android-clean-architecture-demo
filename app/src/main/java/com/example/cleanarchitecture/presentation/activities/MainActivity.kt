@@ -11,9 +11,9 @@ import com.example.cleanarchitecture.domain.usecases.SaveNoteUseCase
 
 class MainActivity : AppCompatActivity() {
 
-    private val noteRepository = NoteRepositoryImpl(this@MainActivity)
-    private val getNoteUseCase = GetNoteUseCase(noteRepository)
-    private val saveNoteUseCase = SaveNoteUseCase(noteRepository)
+    private val noteRepository by lazy { NoteRepositoryImpl(applicationContext) }
+    private val getNoteUseCase by lazy { GetNoteUseCase(noteRepository) }
+    private val saveNoteUseCase by lazy { SaveNoteUseCase(noteRepository) }
 
     private lateinit var binding: ActivityMainBinding
 
@@ -28,14 +28,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun btnGetNoteOnClick() {
-        val data = getNoteUseCase.execute() // dummy id
-        renderNote(data)
+        val resultNote = getNoteUseCase.execute()
+        renderNote(resultNote)
     }
 
     private fun btnSaveNoteOnClick() {
         val data = Note(binding.etInputNote.text.toString())
         val saveResult = saveNoteUseCase.execute(data)
-        renderString("Note saved: ${saveResult.toString()}")
+        renderString("Note saved: $saveResult")
     }
 
     private fun renderNote(note: Note) {
