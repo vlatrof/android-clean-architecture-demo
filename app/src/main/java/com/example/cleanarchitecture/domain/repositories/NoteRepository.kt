@@ -1,4 +1,4 @@
-package com.example.cleanarchitecture.domain.repository
+package com.example.cleanarchitecture.domain.repositories
 
 import com.example.cleanarchitecture.domain.models.Note
 

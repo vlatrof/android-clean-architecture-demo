@@ -3,7 +3,7 @@ package com.example.cleanarchitecture.presentation.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.cleanarchitecture.R
-import com.example.cleanarchitecture.data.repository.NoteRepositoryImpl
+import com.example.cleanarchitecture.data.repositories.NoteRepositoryImpl
 import com.example.cleanarchitecture.databinding.ActivityMainBinding
 import com.example.cleanarchitecture.domain.models.Note
 import com.example.cleanarchitecture.domain.usecases.GetNoteUseCase

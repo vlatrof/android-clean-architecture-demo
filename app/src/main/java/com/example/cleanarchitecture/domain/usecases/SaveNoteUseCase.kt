@@ -1,7 +1,7 @@
 package com.example.cleanarchitecture.domain.usecases
 
 import com.example.cleanarchitecture.domain.models.Note
-import com.example.cleanarchitecture.domain.repository.NoteRepository
+import com.example.cleanarchitecture.domain.repositories.NoteRepository
 
 class SaveNoteUseCase(private val noteRepository: NoteRepository) {
 
