@@ -8,13 +8,19 @@ import com.example.cleanarchitecture.domain.repositories.NoteRepository
 class NoteRepositoryImpl(private val noteStorage: NoteStorage) : NoteRepository {
 
     override fun saveNote(note: DomainNoteModel): Boolean {
-        val dataLayerNoteModel = StorageNoteModel(note.text)
-        return noteStorage.saveNote(dataLayerNoteModel)
+        return noteStorage.saveNote(mapToStorage(note))
     }
 
     override fun getNote(): DomainNoteModel {
-        val dataLayerNoteModel = noteStorage.getNote()
-        return DomainNoteModel(dataLayerNoteModel.text)
+        return mapToDomain(noteStorage.getNote())
+    }
+
+    private fun mapToStorage(note: DomainNoteModel): StorageNoteModel {
+        return StorageNoteModel(note.text)
+    }
+
+    private fun mapToDomain(note: StorageNoteModel): DomainNoteModel {
+        return DomainNoteModel(note.text)
     }
 
 }

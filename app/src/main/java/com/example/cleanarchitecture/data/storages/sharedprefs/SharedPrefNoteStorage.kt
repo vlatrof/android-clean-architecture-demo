@@ -1,6 +1,7 @@
-package com.example.cleanarchitecture.data.storages
+package com.example.cleanarchitecture.data.storages.sharedprefs
 
 import android.content.Context
+import com.example.cleanarchitecture.data.storages.NoteStorage
 import com.example.cleanarchitecture.data.storages.models.Note
 import com.example.cleanarchitecture.presentation.App
 

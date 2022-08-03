@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.cleanarchitecture.R
 import com.example.cleanarchitecture.data.repositories.NoteRepositoryImpl
+import com.example.cleanarchitecture.data.storages.sharedprefs.SharedPrefNoteStorage
 import com.example.cleanarchitecture.databinding.ActivityMainBinding
 import com.example.cleanarchitecture.domain.models.Note
 import com.example.cleanarchitecture.domain.usecases.GetNoteUseCase
@@ -11,7 +12,8 @@ import com.example.cleanarchitecture.domain.usecases.SaveNoteUseCase
 
 class MainActivity : AppCompatActivity() {
 
-    private val noteRepository by lazy { NoteRepositoryImpl(applicationContext) }
+    private val noteStorage by lazy { SharedPrefNoteStorage(applicationContext) }
+    private val noteRepository by lazy { NoteRepositoryImpl(noteStorage) }
     private val getNoteUseCase by lazy { GetNoteUseCase(noteRepository) }
     private val saveNoteUseCase by lazy { SaveNoteUseCase(noteRepository) }
 
@@ -33,8 +35,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun btnSaveNoteOnClick() {
-        val data = Note(binding.etInputNote.text.toString())
-        val saveResult = saveNoteUseCase.execute(data)
+        val note = Note(binding.etInputNote.text.toString())
+        val saveResult = saveNoteUseCase.execute(note)
         renderString("Note saved: $saveResult")
     }
 
