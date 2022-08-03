@@ -5,8 +5,6 @@ import com.example.cleanarchitecture.data.storages.models.Note as StorageNoteMod
 import com.example.cleanarchitecture.domain.models.Note as DomainNoteModel
 import com.example.cleanarchitecture.domain.repositories.NoteRepository
 
-// this repository implementation use shared preferences
-
 class NoteRepositoryImpl(private val noteStorage: NoteStorage) : NoteRepository {
 
     override fun saveNote(note: DomainNoteModel): Boolean {
