@@ -10,6 +10,7 @@ import com.example.cleanarchitecture.databinding.ActivityMainBinding
 import com.example.cleanarchitecture.domain.models.Note
 import com.example.cleanarchitecture.domain.usecases.GetNoteUseCase
 import com.example.cleanarchitecture.domain.usecases.SaveNoteUseCase
+import com.example.cleanarchitecture.presentation.viewmodels.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,13 +18,15 @@ class MainActivity : AppCompatActivity() {
     private val noteRepository by lazy { NoteRepositoryImpl(noteStorage) }
     private val getNoteUseCase by lazy { GetNoteUseCase(noteRepository) }
     private val saveNoteUseCase by lazy { SaveNoteUseCase(noteRepository) }
-
+    private lateinit var mainViewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Log.d("lf", "MainActivity created")
+        Log.d("ls", "MainActivity created")
+
+        mainViewModel = MainViewModel()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -33,9 +36,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("lf", "MainActivity destroyed")
+        Log.d("ls", "MainActivity destroyed")
     }
-
 
     private fun btnGetNoteOnClick() {
         val resultNote = getNoteUseCase.execute()

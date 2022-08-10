@@ -1,0 +1,5 @@
+package com.example.cleanarchitecture.data.storages.sharedprefs
+
+internal const val APP_SHARED_PREFERENCES_NAME = "APP_SHARED_PREFERENCES_NAME"
+internal const val APP_SHARED_PREFERENCES_NOTE_TAG = "APP_SHARED_PREFERENCES_NOTE_TAG"
+internal const val APP_SHARED_PREFERENCES_NOTE_DEFAULT_VALUE = "APP_SHARED_PREFERENCES_NOTE_DEFAULT_VALUE"
