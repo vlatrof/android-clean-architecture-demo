@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.btnGetNote.setOnClickListener { btnGetNoteOnClick() }
         binding.btnSaveNote.setOnClickListener { btnSaveNoteOnClick() }
-
     }
 
     private fun btnGetNoteOnClick() {
@@ -41,12 +40,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun renderNote(note: Note) {
-
         if (note.text == "") {
             binding.tvNote.text = getString(R.string.tv_note_placeholder_text)
             return
         }
-
         renderString(note.text)
     }
 
