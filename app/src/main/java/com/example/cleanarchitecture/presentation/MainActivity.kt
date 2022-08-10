@@ -1,32 +1,20 @@
-package com.example.cleanarchitecture.presentation.activities
+package com.example.cleanarchitecture.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.activity.viewModels
 import com.example.cleanarchitecture.R
-import com.example.cleanarchitecture.data.repositories.NoteRepositoryImpl
-import com.example.cleanarchitecture.data.storages.sharedprefs.SharedPrefNoteStorage
 import com.example.cleanarchitecture.databinding.ActivityMainBinding
 import com.example.cleanarchitecture.domain.models.Note
-import com.example.cleanarchitecture.domain.usecases.GetNoteUseCase
-import com.example.cleanarchitecture.domain.usecases.SaveNoteUseCase
-import com.example.cleanarchitecture.presentation.viewmodels.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val noteStorage by lazy { SharedPrefNoteStorage(applicationContext) }
-    private val noteRepository by lazy { NoteRepositoryImpl(noteStorage) }
-    private val getNoteUseCase by lazy { GetNoteUseCase(noteRepository) }
-    private val saveNoteUseCase by lazy { SaveNoteUseCase(noteRepository) }
-    private lateinit var mainViewModel: MainViewModel
+    private val mainViewModel by viewModels<MainViewModel>()
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        Log.d("ls", "MainActivity created")
-
-        mainViewModel = MainViewModel()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -34,19 +22,14 @@ class MainActivity : AppCompatActivity() {
         binding.btnSaveNote.setOnClickListener { btnSaveNoteOnClick() }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("ls", "MainActivity destroyed")
-    }
-
     private fun btnGetNoteOnClick() {
-        val resultNote = getNoteUseCase.execute()
+        val resultNote = mainViewModel.getNote()
         renderNote(resultNote)
     }
 
     private fun btnSaveNoteOnClick() {
         val note = Note(binding.etInputNote.text.toString())
-        val saveResult = saveNoteUseCase.execute(note)
+        val saveResult = mainViewModel.saveNote(note)
         renderString("Note saved: $saveResult")
     }
 
