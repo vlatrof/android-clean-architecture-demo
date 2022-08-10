@@ -6,12 +6,12 @@ import androidx.lifecycle.ViewModel
 class MainViewModel : ViewModel() {
 
     init {
-        Log.d("main_vm", "MainVM created")
+        Log.d("lf", "MainVM created")
     }
 
     override fun onCleared() {
         super.onCleared()
-        Log.d("main_vm", "MainVM destroyed because of destroying MainActivity")
+        Log.d("lf", "MainVM destroyed because of destroying MainActivity")
     }
 
 }

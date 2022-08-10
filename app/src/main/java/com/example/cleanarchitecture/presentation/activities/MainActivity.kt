@@ -2,6 +2,7 @@ package com.example.cleanarchitecture.presentation.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.cleanarchitecture.R
 import com.example.cleanarchitecture.data.repositories.NoteRepositoryImpl
 import com.example.cleanarchitecture.data.storages.sharedprefs.SharedPrefNoteStorage
@@ -22,11 +23,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Log.d("lf", "MainActivity created")
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.btnGetNote.setOnClickListener { btnGetNoteOnClick() }
         binding.btnSaveNote.setOnClickListener { btnSaveNoteOnClick() }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("lf", "MainActivity destroyed")
+    }
+
 
     private fun btnGetNoteOnClick() {
         val resultNote = getNoteUseCase.execute()
