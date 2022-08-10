@@ -2,6 +2,7 @@ package com.example.cleanarchitecture.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.cleanarchitecture.R
 import com.example.cleanarchitecture.databinding.ActivityMainBinding
@@ -21,29 +22,29 @@ class MainActivity : AppCompatActivity() {
         mainViewModel = ViewModelProvider(this, MainViewModelFactory(this))
             .get(MainViewModel::class.java)
 
-        mainViewModel.saveResultLiveData.observe(this) { saveResultLiveDataOnChange(it) }
-        mainViewModel.noteLiveData.observe(this) { noteLiveDataOnChange(it) }
+        mainViewModel.noteLiveData.observe(this) { onChangeNoteLiveData(it) }
 
-        binding.btnGetNote.setOnClickListener { btnGetNoteOnClick() }
-        binding.btnSaveNote.setOnClickListener { btnSaveNoteOnClick() }
+        binding.btnGetNote.setOnClickListener { onClickBtnGetNote() }
+        binding.btnSaveNote.setOnClickListener { onClickBtnSaveNote() }
 
     }
 
-    private fun saveResultLiveDataOnChange(saveResult: Boolean) {
-        renderString("Note saved: $saveResult")
+    private fun onChangeSaveNoteResult(saveResult: Boolean) {
+        Toast.makeText(this, "Note saved: $saveResult", Toast.LENGTH_SHORT).show()
     }
 
-    private fun noteLiveDataOnChange(note: Note) {
+    private fun onChangeNoteLiveData(note: Note) {
         renderNote(note)
     }
 
-    private fun btnGetNoteOnClick() {
+    private fun onClickBtnGetNote() {
         mainViewModel.getNote()
     }
 
-    private fun btnSaveNoteOnClick() {
+    private fun onClickBtnSaveNote() {
         val noteToSave = Note(binding.etInputNote.text.toString())
         mainViewModel.saveNote(noteToSave)
+        mainViewModel.saveResultLiveData.observe(this) { onChangeSaveNoteResult(it) }
     }
 
     private fun renderNote(note: Note) {
@@ -51,11 +52,7 @@ class MainActivity : AppCompatActivity() {
             binding.tvNote.text = getString(R.string.tv_note_placeholder_text)
             return
         }
-        renderString(note.text)
-    }
-
-    private fun renderString(str: String) {
-        binding.tvNote.text = str
+        binding.tvNote.text = note.text
     }
 
 }
