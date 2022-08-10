@@ -1,5 +1,6 @@
 package com.example.cleanarchitecture.presentation
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cleanarchitecture.domain.models.Note
 import com.example.cleanarchitecture.domain.usecases.GetNoteUseCase
@@ -12,12 +13,15 @@ class MainViewModel(
 
 ) : ViewModel() {
 
-    fun saveNote(note: Note): Boolean {
-        return saveNoteUseCase.execute(note)
+    val saveResultLiveData = MutableLiveData<Boolean>()
+    val noteLiveData = MutableLiveData<Note>()
+
+    fun saveNote(note: Note) {
+        saveResultLiveData.value = saveNoteUseCase.execute(note)
     }
 
-    fun getNote() : Note {
-        return getNoteUseCase.execute()
+    fun getNote() {
+        noteLiveData.value = getNoteUseCase.execute()
     }
 
 }
