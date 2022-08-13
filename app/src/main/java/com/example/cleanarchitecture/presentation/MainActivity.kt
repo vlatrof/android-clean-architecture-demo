@@ -10,7 +10,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val mainViewModel by viewModel<MainViewModel>()
+    // todo: make Note view model via DI DAGGER
+    //private val mainViewModel: MainViewModel
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,19 +1,21 @@
 package com.example.cleanarchitecture.di
 
+import android.content.Context
 import com.example.cleanarchitecture.data.repositories.NoteRepositoryImpl
 import com.example.cleanarchitecture.data.storages.NoteStorage
 import com.example.cleanarchitecture.data.storages.sharedprefs.SharedPrefNoteStorage
 import com.example.cleanarchitecture.domain.repositories.NoteRepository
-import org.koin.dsl.module
+import dagger.Module
 
-val dataModule = module {
+@Module
+class DataModule {
 
-    single<NoteStorage> {
-        SharedPrefNoteStorage(context = get())
+    fun provideNoteStorage(context: Context): NoteStorage {
+        return SharedPrefNoteStorage(context = context)
     }
 
-    single<NoteRepository> {
-        NoteRepositoryImpl(noteStorage = get())
+    fun provideNoteRepository(noteStorage: NoteStorage): NoteRepository {
+        return NoteRepositoryImpl(noteStorage = noteStorage)
     }
 
 }

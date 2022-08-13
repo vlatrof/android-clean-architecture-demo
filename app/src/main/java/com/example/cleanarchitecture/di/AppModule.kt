@@ -1,13 +1,10 @@
 package com.example.cleanarchitecture.di
 
-import com.example.cleanarchitecture.presentation.MainViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.dsl.module
+import dagger.Module
 
-val appModule = module {
+@Module
+class AppModule {
 
-    viewModel<MainViewModel> {
-        MainViewModel(saveNoteUseCase = get(), getNoteUseCase = get())
-    }
+
 
 }
