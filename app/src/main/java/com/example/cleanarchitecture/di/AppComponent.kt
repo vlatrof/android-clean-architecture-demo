@@ -2,9 +2,5 @@ package com.example.cleanarchitecture.di
 
 import dagger.Component
 
-@Component
-class AppComponent {
-
-
-
-}
+@Component(modules = [AppModule::class, DomainModule::class, DataModule::class])
+interface AppComponent {}

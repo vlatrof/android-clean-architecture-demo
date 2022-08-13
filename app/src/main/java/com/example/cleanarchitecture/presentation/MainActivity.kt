@@ -10,8 +10,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    // todo: make Note view model via DI DAGGER
-    //private val mainViewModel: MainViewModel
+    private val mainViewModel: MainViewModel
 
     private lateinit var binding: ActivityMainBinding
 
