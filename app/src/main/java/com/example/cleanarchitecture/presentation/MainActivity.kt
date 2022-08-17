@@ -3,15 +3,19 @@ package com.example.cleanarchitecture.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.example.cleanarchitecture.R
+import com.example.cleanarchitecture.app.App
 import com.example.cleanarchitecture.databinding.ActivityMainBinding
 import com.example.cleanarchitecture.domain.models.Note
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    private val mainViewModel: MainViewModel
+    @Inject
+    lateinit var vmFactory: MainViewModelFactory
 
+    private lateinit var mainViewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +24,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        (applicationContext as App).appComponent.inject(this)
+
+        mainViewModel = ViewModelProvider(this, vmFactory)[MainViewModel::class.java]
         mainViewModel.noteLiveData.observe(this) { onChangeNoteLiveData(it) }
 
         binding.btnGetNote.setOnClickListener { onClickBtnGetNote() }
