@@ -1,31 +1,10 @@
 package com.example.cleanarchitecture.app
 
 import android.app.Application
-import com.example.cleanarchitecture.di.appModule
-import com.example.cleanarchitecture.di.dataModule
-import com.example.cleanarchitecture.di.domainModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
-import org.koin.core.logger.Level
+import dagger.hilt.android.HiltAndroidApp
 
-class App : Application() {
-
-    override fun onCreate() {
-        super.onCreate()
-
-        startKoin {
-            androidLogger(Level.ERROR)
-            androidContext(this@App)
-            modules(
-                listOf(
-                    appModule,
-                    domainModule,
-                    dataModule
-                )
-            )
-        }
-
-    }
-
-}
+// with @HiltAndroidApp annotation Hilt will generate base class for App that extends Application
+// class tree will be look like this:
+// App -extends-> [Generated class by Hilt] -extends-> Application
+@HiltAndroidApp
+class App : Application() {}

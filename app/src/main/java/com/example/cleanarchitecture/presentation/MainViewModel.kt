@@ -1,13 +1,15 @@
 package com.example.cleanarchitecture.presentation
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cleanarchitecture.domain.models.Note
 import com.example.cleanarchitecture.domain.usecases.GetNoteUseCase
 import com.example.cleanarchitecture.domain.usecases.SaveNoteUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MainViewModel(
+@HiltViewModel
+class MainViewModel @Inject constructor(
 
     private val saveNoteUseCase: SaveNoteUseCase,
     private val getNoteUseCase: GetNoteUseCase,

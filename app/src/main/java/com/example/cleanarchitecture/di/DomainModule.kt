@@ -1,19 +1,25 @@
 package com.example.cleanarchitecture.di
 
+import com.example.cleanarchitecture.domain.repositories.NoteRepository
 import com.example.cleanarchitecture.domain.usecases.GetNoteUseCase
 import com.example.cleanarchitecture.domain.usecases.SaveNoteUseCase
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
 
-val domainModule = module {
+@Module
+@InstallIn(ViewModelComponent::class)
+class DomainModule {
 
-    factory<GetNoteUseCase> {
-        GetNoteUseCase(noteRepository = get())
+    @Provides
+    fun provideSaveNoteUseCase(noteRepository: NoteRepository) : SaveNoteUseCase {
+        return SaveNoteUseCase(noteRepository)
     }
 
-    factory<SaveNoteUseCase> {
-        SaveNoteUseCase(noteRepository = get())
+    @Provides
+    fun provideGetNoteUseCase(noteRepository: NoteRepository) : GetNoteUseCase {
+        return GetNoteUseCase(noteRepository)
     }
-
-
 
 }
