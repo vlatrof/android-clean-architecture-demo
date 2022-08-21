@@ -12,16 +12,17 @@ class GetNoteUseCaseTest {
     private val noteRepository = mock<NoteRepository>()
 
     @Test
-    fun `should return the same data as in repository`() {
+    fun `should return the same note value as in repository`() {
 
-        val testNote = Note(text = "test note")
-        Mockito.`when`(noteRepository.getNote()).thenReturn(testNote)
+        val testNoteSaved = Note(text = "dummy note")
+        val testNoteExpected = Note(text = "dummy note")
 
-        val useCase = GetNoteUseCase(noteRepository = noteRepository)
-        val actual = useCase.execute()
-        val expected = Note(text = "test note")
+        Mockito.`when`(noteRepository.getNote()).thenReturn(testNoteSaved)
+        val getNoteUseCase = GetNoteUseCase(noteRepository = noteRepository)
 
-        Assertions.assertEquals(expected, actual)
+        val actual = getNoteUseCase.execute()
+
+        Assertions.assertEquals(testNoteExpected, actual)
 
     }
 
