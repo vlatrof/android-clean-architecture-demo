@@ -21,6 +21,7 @@ class MainViewModelTest {
     fun afterEach() {
         Mockito.reset(saveNoteUseCase)
         Mockito.reset(getNoteUseCase)
+        ArchTaskExecutor.getInstance().setDelegate(null)
     }
 
     @BeforeEach
