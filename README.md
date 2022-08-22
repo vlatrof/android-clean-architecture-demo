@@ -1,3 +1,3 @@
 # Android demo that shows how to build Android app using Clean Architecture
 
-<img src="screenshots/architecture.jpg">
+<img src="screenshots/architecture.png">
