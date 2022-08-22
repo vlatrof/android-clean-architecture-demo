@@ -18,9 +18,8 @@ class MainViewModel(
     private val noteMutableLiveData = MutableLiveData<Note>()
 
     // to prevent changing MutableLiveData.value from activity
-    val saveResultLiveData = saveResultMutableLiveData
-    val noteLiveData = noteMutableLiveData
-
+    val saveResultLiveData: LiveData<Boolean> = saveResultMutableLiveData
+    val noteLiveData: LiveData<Note> = noteMutableLiveData
 
     fun saveNote(note: Note) {
         saveResultMutableLiveData.value = saveNoteUseCase.execute(note)
