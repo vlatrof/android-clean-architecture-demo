@@ -48,8 +48,7 @@ class MainViewModelTest {
 
         val noteToSave = Note(text = "dummy note")
 
-        Mockito.`when`(saveNoteUseCase.execute(note = noteToSave))
-            .thenReturn(true)
+        Mockito.`when`(saveNoteUseCase.execute(note = noteToSave)).thenReturn(true)
 
         val mainViewModel = MainViewModel(
             saveNoteUseCase = saveNoteUseCase,
@@ -66,7 +65,23 @@ class MainViewModelTest {
     }
 
     @Test
-    fun `should load note successfully`() {
+    fun `should put note in noteLiveData after loading note successfully`() {
+
+        val noteToGet = Note(text = "dummy note")
+
+        Mockito.`when`(getNoteUseCase.execute()).thenReturn(noteToGet)
+
+        val mainViewModel = MainViewModel(
+            saveNoteUseCase = saveNoteUseCase,
+            getNoteUseCase = getNoteUseCase
+        )
+
+        mainViewModel.getNote()
+
+        val expected = noteToGet
+        val actual = mainViewModel.noteLiveData.value
+
+        Assertions.assertEquals(expected, actual)
 
     }
 
