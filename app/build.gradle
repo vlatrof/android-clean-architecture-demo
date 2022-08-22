@@ -45,6 +45,9 @@ dependencies {
     implementation "io.insert-koin:koin-android:$koin_version"
     testImplementation "io.insert-koin:koin-test:$koin_version"
 
+    // Tests
+    testImplementation "org.junit.jupiter:junit-jupiter:5.8.2"
+
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
     implementation 'androidx.core:core-ktx:1.8.0'
