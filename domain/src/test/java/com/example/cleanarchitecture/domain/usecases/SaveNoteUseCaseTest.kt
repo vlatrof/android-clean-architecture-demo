@@ -20,7 +20,7 @@ class SaveNoteUseCaseTest {
     }
 
     @Test
-    fun `should not attempt to save note value if such note value saved yet`() {
+    fun `should not attempt to save note value if such note value saved already`() {
 
         val testNoteSaved = Note(text = "dummy note")
         val testNoteToSave = Note(text = "dummy note")
