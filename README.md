@@ -1,5 +1,9 @@
 # Android demo that shows how to build Android app using Clean Architecture
 
-Additional, there is 3 DI frameworks in this demo in 3 different branches (master branch for koin)  
+Technologies and patterns used in this demo:
+
+Architecture: Clean Architecure + MVVM + Repository pattern </br>
+DI: Koin, Dagger2, Hilt (in different branches)</br>
+Testing: JUnit + Mockito </br>
 
 <img src="screenshots/architecture diagram.drawio.png">
