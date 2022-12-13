@@ -1,8 +1,8 @@
 package com.example.cleanarchitecture.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.cleanarchitecture.R
 import com.example.cleanarchitecture.app.App
@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var vmFactory: MainViewModelFactory
-
     private lateinit var mainViewModel: MainViewModel
     private lateinit var binding: ActivityMainBinding
 
@@ -31,7 +30,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnGetNote.setOnClickListener { onClickBtnGetNote() }
         binding.btnSaveNote.setOnClickListener { onClickBtnSaveNote() }
-
     }
 
     private fun onChangeSaveNoteResult(saveResult: Boolean) {
@@ -59,5 +57,4 @@ class MainActivity : AppCompatActivity() {
         }
         binding.tvNote.text = note.text
     }
-
 }

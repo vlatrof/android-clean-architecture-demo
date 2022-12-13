@@ -6,8 +6,6 @@ import com.example.cleanarchitecture.domain.repositories.NoteRepository
 class GetNoteUseCase(private val noteRepository: NoteRepository) {
 
     fun execute(): Note {
-
         return noteRepository.getNote()
     }
-
 }

@@ -17,16 +17,12 @@ class AppModule(private val context: Context) {
 
     @Provides
     fun provideMainViewModelFactory(
-
         saveNoteUseCase: SaveNoteUseCase,
         getNoteUseCase: GetNoteUseCase
-
     ): MainViewModelFactory {
-
         return MainViewModelFactory(
             saveNoteUseCase = saveNoteUseCase,
-            getNoteUseCase = getNoteUseCase)
-
+            getNoteUseCase = getNoteUseCase
+        )
     }
-
 }

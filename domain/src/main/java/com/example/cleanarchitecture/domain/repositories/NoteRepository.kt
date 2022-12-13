@@ -6,5 +6,4 @@ interface NoteRepository {
 
     fun saveNote(note: Note): Boolean
     fun getNote(): Note
-
 }

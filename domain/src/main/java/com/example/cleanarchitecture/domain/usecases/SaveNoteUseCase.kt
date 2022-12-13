@@ -8,5 +8,4 @@ class SaveNoteUseCase(private val noteRepository: NoteRepository) {
     fun execute(note: Note): Boolean {
         return noteRepository.saveNote(note)
     }
-
 }
